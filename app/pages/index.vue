@@ -1,7 +1,9 @@
-<script lang="ts" setup>
-//
-</script>
+
 
 <template>
-  <HelloWorld />
+  <v-btn>dfadfadfa</v-btn>
 </template>
+
+<script setup>
+//
+</script>
