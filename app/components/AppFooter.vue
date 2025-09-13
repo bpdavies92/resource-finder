@@ -1,12 +1,10 @@
 <template>
   <v-footer
-    class="position-relative mt-12"
+    class="position-relative mt-12 pl-12 pr-12"
     app
     height="40"
   >
-
-    <v-container>
-        <v-sheet color="transparent" class="d-flex justify-space-between">
+        <v-sheet width="100%" color="transparent" class="d-flex justify-space-between">
             <div>
               <v-list>
                 <v-list-item><a href="">Teach Learn</a></v-list-item>
@@ -18,8 +16,6 @@
               fbsdfgsgsdg
             </div>
         </v-sheet>
-    </v-container>
-    
   </v-footer>
 </template>
 

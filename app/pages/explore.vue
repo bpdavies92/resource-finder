@@ -5,10 +5,10 @@
         prepend-inner-icon="mdi-magnify"
         variant="outlined"
         rounded="rounded pill"
-        
         ></v-text-field>
+        
         <v-row>
-            <v-col cols="12" md="4">
+            <v-col cols="12" md="3">
                 <v-sheet class="position-sticky top-0" height="min-content">
                     <v-menu
                     transition="fade-transition"
@@ -35,17 +35,27 @@
                     </template>
                         <v-list class="rounded-xl" :class="{'rounded-t-0': menuOpenClose}" border="primaryBlack opacity-100 lg">
                             <v-list-item color="#303030" v-for="(a, index) in testArry" :key="index">
-                                    <v-list-title>{{ a }}</v-list-title>
+                                    <v-list-title>
+
+                                    </v-list-title>
                             </v-list-item>
                         </v-list>
                     </v-menu>
                 </v-sheet>
             </v-col>
-            <v-col cols="12" md="8">
+            <v-col cols="12" md="9">
                 <v-row >
-                    <v-col cols="12" sm="6" v-for="value in 50">
+                    <v-col cols="12" sm="6" v-for="(value, index) in resourceList">
                         <v-sheet >
-                            <Card/>
+                            <Card>
+                                <template v-slot:title>
+                                    {{ value.title }}
+                                </template>
+
+                                <template v-slot:description>
+                                    {{ value.description[0] }}
+                                </template>
+                            </Card>
                         </v-sheet>
                     </v-col>
                 </v-row>
