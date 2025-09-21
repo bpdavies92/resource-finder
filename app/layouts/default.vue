@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar :elevation="0" class="pr-12 pl-12 position-relative mb-n12">
+    <v-app-bar :elevation="0" class="pr-12 pl-12 position-absolute top-0">
       <!-- <template v-slot:prepend>
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
       </template> -->
