@@ -9,6 +9,7 @@ export default defineVuetifyConfiguration({
         dark: false,
         colors: {
           primaryBlack: '#303030',  
+          brightBlue: '#26a8df'
         },
       },
     },

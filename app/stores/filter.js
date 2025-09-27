@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia'
 
-import { ref } from 'vue'
 
 export const useMyFilterStore = defineStore('myFilterStore', {
   
   state: () => ({ 
 
-      coursePrinciples: ref([
+      resources: [],
+      coursePrinciples: [
 
         {
           filter: 'Student Agency', 
@@ -32,8 +32,39 @@ export const useMyFilterStore = defineStore('myFilterStore', {
           filter: 'Course Coherence', 
           status: false
         }
-      ])
+      ],
+      topics: [
+        {
+          filter: 'Assessment',
+          status: false
+        },
+        {
+          filter: 'Peer observation', 
+          status: false
+        },
+        {
+          filter: 'Active learning', 
+          status: false
+        },
+        {
+          filter: 'Teams', 
+          status: false
+        }
+      ]
    
    }),
-  actions: {}
+  actions: {
+    async fetchResources() {
+      this.resources  = await $fetch(`/api/resources`)
+      return this.resources
+    }, 
+    uncheckAllFilters() {
+        this.coursePrinciples.forEach((element, index) => {
+          element.status = false
+      });
+        this.topics.forEach((element, index) => {
+          element.status = false
+      });
+    }
+  }
 })
