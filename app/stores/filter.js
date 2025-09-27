@@ -50,8 +50,35 @@ export const useMyFilterStore = defineStore('myFilterStore', {
           filter: 'Teams', 
           status: false
         }
+      ],
+      levels: [
+        {
+          filter: 'Beginner', 
+          status: false
+        }, 
+        {
+          filter: 'Intermediate', 
+          status: false
+        }, 
+        {
+          filter: 'Advanced',
+          status: false
+        }
+      ],
+      contentType: [
+        {
+          filter: 'Workshop', 
+          status: false
+        }, 
+        {
+          filter: 'Video', 
+          status: false
+        }, 
+        {
+          filter: 'Written', 
+          status: false
+        }
       ]
-   
    }),
   actions: {
     async fetchResources() {
@@ -59,12 +86,15 @@ export const useMyFilterStore = defineStore('myFilterStore', {
       return this.resources
     }, 
     uncheckAllFilters() {
-        this.coursePrinciples.forEach((element, index) => {
-          element.status = false
-      });
-        this.topics.forEach((element, index) => {
-          element.status = false
-      });
+      this.coursePrinciples.forEach((element, index) => {
+      element.status = false
+    });
+      this.topics.forEach((element, index) => {
+      element.status = false
+    });
+    this.levels.forEach((element, index) => {
+      element.status = false
+    });
     }
   }
 })
