@@ -90,6 +90,7 @@
                         color="brightBlue"
                         :label="f.filter"
                         hide-details
+                        @change="buildQueryString('topics', f.filter, f.status)"
                       ></v-checkbox>
                   
                   </v-list-item>
@@ -132,6 +133,7 @@
                         color="brightBlue"
                         :label="f.filter"
                         hide-details
+                        @change="buildQueryString('levels', f.filter, f.status)"
                       ></v-checkbox>
                   
                   </v-list-item>
@@ -173,6 +175,8 @@
 </template>
 
 <script setup>
+import { GoToSymbol } from 'vuetify/lib/composables/goto.mjs'
+
 
 
 const route = useRoute()
@@ -192,6 +196,9 @@ const buildQueryString = (tagName, filter, status) => {
     const filterObj = filters.filterQuery
 
     let queryStringPrinciples = ''
+    let queryStringTopics = ''
+    let queryStringLevels = ''
+    let finalURL = ''
 
     let index = filterObj[tagName].indexOf(filter)
 
@@ -205,8 +212,14 @@ const buildQueryString = (tagName, filter, status) => {
     }
     
     queryStringPrinciples = `principles=${filterObj['principles'].toString().split(" ").join("+")}`
+    queryStringLevels = `levels=${filterObj['levels'].toString().split(" ").join("+")}`
+    queryStringTopics = `topics=${filterObj['topics'].toString().split(" ").join("+")}`
+
+    finalURL = `${filterObj['principles'].length > 0 ? queryStringPrinciples : ''}${filterObj['levels'].length > 0 ? queryStringLevels : ''}${filterObj['topics'].length > 0 ? queryStringTopics : ''}`
+
+
     
-    console.log(queryStringPrinciples)
+   console.log(finalURL)
 
 }
 

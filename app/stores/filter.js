@@ -7,7 +7,9 @@ export const useMyFilterStore = defineStore('myFilterStore', {
 
       resources: [],
       filterQuery: {
-        principles: []
+        principles: [], 
+        topics: [], 
+        levels: []
       },
       coursePrinciples: [
 
