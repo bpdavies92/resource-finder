@@ -6,6 +6,9 @@ export const useMyFilterStore = defineStore('myFilterStore', {
   state: () => ({ 
 
       resources: [],
+      filterQuery: {
+        principles: []
+      },
       coursePrinciples: [
 
         {
@@ -82,7 +85,8 @@ export const useMyFilterStore = defineStore('myFilterStore', {
    }),
   actions: {
     async fetchResources() {
-      this.resources  = await $fetch(`/api/resources`)
+      const {data}  = await $fetch(`/api/resources`)
+      this.resources = data
       return this.resources
     }, 
     uncheckAllFilters() {

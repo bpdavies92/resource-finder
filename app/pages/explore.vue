@@ -7,6 +7,8 @@
       rounded="rounded pill"
     ></v-text-field>
 
+    {{filters.filterQuery}}
+
     <v-row>
       <v-col cols="12" md="3">
         <!---------------------------------------->
@@ -43,6 +45,7 @@
                         color="brightBlue"
                         :label="f.filter"
                         hide-details
+                        @change="onFilterChange('principles', f.filter, f.status)"
                       ></v-checkbox>
                     </v-list-title>
                   </v-list-item>
@@ -167,16 +170,19 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+
+const route = useRoute()
+const router = useRouter()
 
 const menuOpenClose = ref([false, false, false])
 const filters = useMyFilterStore()
-
 // filters.fetchResources()
-// await callOnce('resouces', () => filters.fetchResources())
-// console.log('filters', filters.coursePrinciples)
-// const tag = ref('?filter[principles]=course%20identity')
-// console.log('ALL DATA', resources)
+await callOnce('resouces', () => filters.fetchResources())
+
+const onFilterChange = (name, filter, status) => {
+  
+}
+
 </script>
 
 <style lang="scss" scoped>
