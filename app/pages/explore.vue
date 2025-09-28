@@ -211,15 +211,23 @@ const buildQueryString = (tagName, filter, status) => {
         filterObj[tagName].splice(index, 1)
     }
     
-    queryStringPrinciples = `principles=${filterObj['principles'].toString().split(" ").join("+")}`
-    queryStringLevels = `levels=${filterObj['levels'].toString().split(" ").join("+")}`
-    queryStringTopics = `topics=${filterObj['topics'].toString().split(" ").join("+")}`
+  // Build query object instead of string
+  const query = {};
 
-    finalURL = `${filterObj['principles'].length > 0 ? queryStringPrinciples : ''}${filterObj['levels'].length > 0 ? queryStringLevels : ''}${filterObj['topics'].length > 0 ? queryStringTopics : ''}`
+  if (filterObj['principles'].length > 0) {
+    query.principles = filterObj['principles'].join('+');
+  }
+  if (filterObj['levels'].length > 0) {
+    query.levels = filterObj['levels'].join('+');
+  }
+  if (filterObj['topics'].length > 0) {
+    query.topics = filterObj['topics'].join('+');
+  }
 
+  // Push query object directly
+  router.push({ query });
 
-    
-   console.log(finalURL)
+  console.log(query);
 
 }
 
