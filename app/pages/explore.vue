@@ -9,6 +9,10 @@
 
     {{filters.filterQuery}}
 
+    {{ params }}
+
+
+
     <v-row>
       <v-col cols="12" md="3">
         <!---------------------------------------->
@@ -39,15 +43,14 @@
                     :index="i"
                     color="#303030"
                   >
-                    <v-list-title>
                       <v-checkbox
                         v-model="f.status"
                         color="brightBlue"
                         :label="f.filter"
                         hide-details
-                        @change="onFilterChange('principles', f.filter, f.status)"
+                        @change="buildQueryString('principles', f.filter, f.status)"
                       ></v-checkbox>
-                    </v-list-title>
+
                   </v-list-item>
                 </v-list>
               </v-expansion-panel-text>
@@ -81,14 +84,14 @@
                     :index="i"
                     color="#303030"
                   >
-                    <v-list-title>
+                 
                       <v-checkbox
                         v-model="f.status"
                         color="brightBlue"
                         :label="f.filter"
                         hide-details
                       ></v-checkbox>
-                    </v-list-title>
+                  
                   </v-list-item>
                 </v-list>
               </v-expansion-panel-text>
@@ -123,14 +126,14 @@
                     :index="i"
                     color="#303030"
                   >
-                    <v-list-title>
+                   
                       <v-checkbox
                         v-model="f.status"
                         color="brightBlue"
                         :label="f.filter"
                         hide-details
                       ></v-checkbox>
-                    </v-list-title>
+                  
                   </v-list-item>
                 </v-list>
               </v-expansion-panel-text>
@@ -171,17 +174,43 @@
 
 <script setup>
 
+
 const route = useRoute()
 const router = useRouter()
+const routeQuery = route.query
+
+const params = new URLSearchParams()
+
 
 const menuOpenClose = ref([false, false, false])
 const filters = useMyFilterStore()
-// filters.fetchResources()
-await callOnce('resouces', () => filters.fetchResources())
 
-const onFilterChange = (name, filter, status) => {
-  
+// await callOnce('resouces', () => filters.fetchResources())
+
+const buildQueryString = (tagName, filter, status) => {
+
+    const filterObj = filters.filterQuery
+
+    let queryStringPrinciples = ''
+
+    let index = filterObj[tagName].indexOf(filter)
+
+    /// Check if the filter checkbox is ticked
+    if(!filters.filterQuery[tagName].includes(filter)) {
+        filterObj[tagName].push(filter)
+    } else {
+        if(index === -1) return
+        /// Remove from array if tag name is present, using index
+        filterObj[tagName].splice(index, 1)
+    }
+    
+    queryStringPrinciples = `principles=${filterObj['principles'].toString().split(" ").join("+")}`
+    
+    console.log(queryStringPrinciples)
+
 }
+
+
 
 </script>
 
